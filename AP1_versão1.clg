@@ -1,0 +1,1388 @@
+// Nome: Natália Carvalho Barros					Matrícula: UC20100753
+
+algoritmo contagemCovid;
+// Síntese
+//  Objetivo: registrar as informações coletadas de pessoas de uma RA e depois gerar um relatório com dados relacionados ás informações obtidas.
+//  Entrada : sexo, resultado do teste ao vírus, idade, responsável pela pesquisa e RA.
+//  Saída   : em cada faixa etária, o total de testes realizados, qtd de mulheres e homens e porcentagem de testes positivos e negativos. Além disso, uma média das
+// idades daqueles que realizou os testes, faixa etária com maior e menor percentual de infectados, qtd de pessoas infectadas e não infectadas, qtd de homens adultos
+// e infectados e mulheres adultas infectadas, qtd de mulheres idosas infectadas, percentual de crianças não infectadas e de idosos infectados. 
+
+
+principal
+	caracter sexo, resultado, controle;
+	inteiro idade, contTestes1, contTestes2, contTestes3, contTestes4, contTestes5, contF1, contF2, contF3, contF4, contF5, contM1, contM2, contM3, contM4, contM5;
+	inteiro contP1, contP2, contP3, contP4, contP5, contN1, contN2, contN3, contN4, contN5, somaIdades1, somaIdades2, somaIdades3, somaIdades4, somaIdades5, contC1;
+	inteiro contC2, contC3, contC4, contC5, contCP1, contCP2, contCP3, contCP4, contCP5, contCN1, contCN2, contCN3, contCN4, contCN5, contCF1, contCF2, contCF3, contCF4;
+	inteiro contCF5, contCM1, contCM2, contCM3, contCM4, contCM5, contAdol1, contAdol2, contAdol3, contAdol4, contAdol5, contAdolP1, contAdolP2, contAdolP3, contAdolP4;
+	inteiro contAdolP5, contAdolN1, contAdolN2, contAdolN3, contAdolN4, contAdolN5, contAdolF1, contAdolF2, contAdolF3, contAdolF4, contAdolF5, contAdolM1, contAdolM2;
+	inteiro contAdolM3, contAdolM4, contAdolM5, contAdul1, contAdul2, contAdul3, contAdul4, contAdul5, contAdulP1, contAdulP2, contAdulP3, contAdulP4, contAdulP5;
+	inteiro contAdulPM1, contAdulPM2, contAdulPM3, contAdulPM4, contAdulPM5, contAdulPF1, contAdulPF2, contAdulPF3, contAdulPF4, contAdulPF5, contAdulN1, contAdulN2;
+	inteiro contAdulN3, contAdulN4, contAdulN5, contAdulF1, contAdulF2, contAdulF3, contAdulF4, contAdulF5, contAdulM1, contAdulM2, contAdulM3, contAdulM4, contAdulM5;
+	inteiro contId1, contId2, contId3, contId4, contId5, contIdP1, contIdP2, contIdP3, contIdP4, contIdP5, contIdPF1, contIdPF2, contIdPF3, contIdPF4, contIdPF5, contIdN1;
+	inteiro contIdN2, contIdN3, contIdN4, contIdN5, contIdF1, contIdF2, contIdF3, contIdF4, contIdF5, contIdM1, contIdM2, contIdM3, contIdM4, contIdM5, mediaIdades1;
+	inteiro mediaIdades2, mediaIdades3, mediaIdades4, mediaIdades5, contPTotal, contAdulPFTotal, contIdPFTotal, contAdulPMTotal, contNTotal, mediaIdadesTotal, contTestesTotal;
+	real porcentF1, porcentF2, porcentF3, porcentF4, porcentF5, porcentM1, porcentM2, porcentM3, porcentM4, porcentM5, porcentP1, porcentP2, porcentP3, porcentP4, porcentP5;
+	real porcentN1, porcentN2, porcentN3, porcentN4, porcentN5, porcentCP1, porcentCP2, porcentCP3, porcentCP4, porcentCP5, porcentCN1, porcentCN2, porcentCN3, porcentCN4;
+	real porcentCN5, porcentAdolP1, porcentAdolP2, porcentAdolP3, porcentAdolP4, porcentAdolP5, porcentAdolN1, porcentAdolN2, porcentAdolN3, porcentAdolN4, porcentAdolN5;
+	real porcentAdulP1, porcentAdulP2, porcentAdulP3, porcentAdulP4, porcentAdulP5, porcentAdulN1, porcentAdulN2, porcentAdulN3, porcentAdulN4, porcentAdulN5, porcentIdP1;
+	real porcentIdP2, porcentIdP3, porcentIdP4, porcentIdP5, porcentIdN1, porcentIdN2, porcentIdN3, porcentIdN4, porcentIdN5, porcentIdPTotal, porcentCNTotal, porcentAdulPTotal;
+	real porcentAdolPTotal, porcentCPTotal;
+	texto nome, RA1, RA2, RA3, RA4, RA5;
+	// Inicializando as variáveis
+	contTestes1 = 0;
+	contF1 = 0;
+	contM1 = 0;
+	contP1 = 0;
+	contN1 = 0;
+	somaIdades1 = 0;
+	contC1 = 0;
+	contCP1 = 0;
+	contCN1 = 0;
+	contCF1 = 0;
+	contCM1 = 0;
+	contAdol1 = 0;
+	contAdolP1 = 0;
+	contAdolN1 = 0;
+	contAdolF1 = 0;
+	contAdolM1 = 0;
+	contAdul1 = 0;
+	contAdulP1 = 0;
+	contAdulPM1 = 0;
+	contAdulPF1 = 0;
+	contAdulN1 = 0;
+	contAdulF1 = 0;
+	contAdulM1 = 0;
+	contId1 = 0;
+	contIdP1 = 0;
+	contIdPF1 = 0;
+	contIdN1 = 0;
+	contIdF1 = 0;
+	contIdM1 = 0;
+
+	contTestes2 = 0;
+	contF2 = 0;
+	contM2 = 0;
+	contP2 = 0;
+	contN2 = 0;
+	somaIdades2 = 0;
+	contC2 = 0;
+	contCP2 = 0;
+	contCN2 = 0;
+	contCF2 = 0;
+	contCM2 = 0;
+	contAdol2 = 0;
+	contAdolP2 = 0;
+	contAdolN2 = 0;
+	contAdolF2 = 0;
+	contAdolM2 = 0;
+	contAdul2 = 0;
+	contAdulP2 = 0;
+	contAdulPM2 = 0;
+	contAdulPF2 = 0;
+	contAdulN2 = 0;
+	contAdulF2 = 0;
+	contAdulM2 = 0;
+	contId2 = 0;
+	contIdP2 = 0;
+	contIdPF2 = 0;
+	contIdN2 = 0;
+	contIdF2 = 0;
+	contIdM2 = 0;
+
+	contTestes3 = 0;
+	contF3 = 0;
+	contM3 = 0;
+	contP3 = 0;
+	contN3 = 0;
+	somaIdades3 = 0;
+	contC3 = 0;
+	contCP3 = 0;
+	contCN3 = 0;
+	contCF3 = 0;
+	contCM3 = 0;
+	contAdol3 = 0;
+	contAdolP3 = 0;
+	contAdolN3 = 0;
+	contAdolF3 = 0;
+	contAdolM3 = 0;
+	contAdul3 = 0;
+	contAdulP3 = 0;
+	contAdulPM3 = 0;
+	contAdulPF3 = 0;
+	contAdulN3 = 0;
+	contAdulF3 = 0;
+	contAdulM3 = 0;
+	contId3 = 0;
+	contIdP3 = 0;
+	contIdPF3 = 0;
+	contIdN3 = 0;
+	contIdF3 = 0;
+	contIdM3 = 0;
+
+	contTestes4 = 0;
+	contF4 = 0;
+	contM4 = 0;
+	contP4 = 0;
+	contN4 = 0;
+	somaIdades4 = 0;
+	contC4 = 0;
+	contCP4 = 0;
+	contCN4 = 0;
+	contCF4 = 0;
+	contCM4 = 0;
+	contAdol4 = 0;
+	contAdolP4 = 0;
+	contAdolN4 = 0;
+	contAdolF4 = 0;
+	contAdolM4 = 0;
+	contAdul4 = 0;
+	contAdulP4 = 0;
+	contAdulPM4 = 0;
+	contAdulPF4 = 0;
+	contAdulN4 = 0;
+	contAdulF4 = 0;
+	contAdulM4 = 0;
+	contId4 = 0;
+	contIdP4 = 0;
+	contIdPF4 = 0;
+	contIdN4 = 0;
+	contIdF4 = 0;
+	contIdM4 = 0;
+
+	contTestes5 = 0;
+	contF5 = 0;
+	contM5 = 0;
+	contP5 = 0;
+	contN5 = 0;
+	somaIdades5 = 0;
+	contC5 = 0;
+	contCP5 = 0;
+	contCN5 = 0;
+	contCF5 = 0;
+	contCM5 = 0;
+	contAdol5 = 0;
+	contAdolP5 = 0;
+	contAdolN5 = 0;
+	contAdolF5 = 0;
+	contAdolM5 = 0;
+	contAdul5 = 0;
+	contAdulP5 = 0;
+	contAdulPM5 = 0;
+	contAdulPF5 = 0;
+	contAdulN5 = 0;
+	contAdulF5 = 0;
+	contAdulM5 = 0;
+	contId5 = 0;
+	contIdP5 = 0;
+	contIdPF5 = 0;
+	contIdN5 = 0;
+	contIdF5 = 0;
+	contIdM5 = 0;
+
+	faca
+		escreval("Nome do responsável pela pesquisa: "); // Inserindo o responsável pela pesquisa
+		leia(nome);
+		se (tamanhoTexto(nome) == 0) entao
+			escreval("Digite o nome.");
+		fimSe
+	enquanto (tamanhoTexto(nome) == 0); // NÃ£o permitir campo vazio
+
+	// Introduzindo dados RA 1
+	faca
+		escreval("Nome da primeira Região Administrativa: "); // Inserindo o nome da RA 1
+		leia(RA1);
+		se (tamanhoTexto(RA1) == 0) entao
+			escreval("Digite o nome da primeira Região Administrativa.");
+		fimSe
+	enquanto (tamanhoTexto(RA1) == 0); // Não permitir campo vazio
+
+	faca
+		escreval("Você fez o teste e deseja participar da pesquisa (S/N)? "); // Variável de controle do looping
+		leiaCaracter(controle);
+		controle = maiusculoCaracter(controle);
+		se ((controle != 'S') e (controle != 'N')) entao
+			escreval("Opinião inválida.");
+		fimSe
+		se (controle == 'S') entao
+			contTestes1 = contTestes1 + 1; // letra A: contagem do total de testes realizados na RA 1
+		fimSe
+	enquanto ((controle != 'S') e (controle != 'N')); // Validação da variável de controle
+
+	enquanto (controle != 'N') faca
+		faca
+			escreval("Sexo (F/M): "); // Inserindo o sexo
+			leiaCaracter(sexo);
+			sexo = maiusculoCaracter(sexo);
+			se ((sexo != 'F') e (sexo != 'M')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (sexo == 'F') entao
+				contF1 = contF1 + 1; // letra B: contagem de pessoas do sexo feminino em todas as faixas etárias na RA 1
+			fimSe
+			se (sexo == 'M') entao
+				contM1 = contM1 + 1; // letra B: contagem de pessoas do sexo masculino em todas as faixas etárias na RA 1
+			fimSe
+		enquanto ((sexo != 'F') e (sexo != 'M')); // Validação do sexo
+
+		faca
+			escreval("Resultado do seu teste: "); // Inserindo o resultado do teste
+			escreval("P - positivo / N - negativo");
+			leiaCaracter(resultado);
+			resultado = maiusculoCaracter(resultado);
+			se ((resultado != 'P') e (resultado != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (resultado == 'P') entao
+				contP1 = contP1 + 1; // Contagem dos resultados positivos na RA 1
+			fimSe
+			se (resultado == 'N') entao
+				contN1 = contN1 + 1; // Contagem dos resultados negativos na RA 1
+			fimSe
+		enquanto ((resultado != 'P') e (resultado != 'N')); // Validando o resultado do teste
+
+		faca
+			faca
+				escreval("Idade: "); // Inserindo a idade
+				leia(idade);
+				se (idade < 0) entao
+					escreval("Idade inválida.");
+				fimSe
+			enquanto (idade < 0);
+			somaIdades1 = somaIdades1 + idade; // Somando todas as idades inseridas na RA 1
+			se ((idade >= 0) e (idade <= 11)) entao
+				contC1 = contC1 + 1; // Contagem de todas as crianças na RA 1
+				se (resultado == 'P') entao
+					contCP1 = contCP1 + 1; // Contagem das crianças com resultado positivo na RA 1
+				fimSe
+				se (resultado == 'N') entao
+					contCN1 = contCN1 + 1; // Contagem das crianças com resultado negativo na RA 1
+				fimSe
+				se (sexo == 'F') entao
+					contCF1 = contCF1 + 1; // Contagem das crianças do sexo feminino na RA 1
+				fimSe
+				se (sexo == 'M') entao
+					contCM1 = contCM1 + 1; // Contagem das crianças do sexo masculino na RA 1
+				fimSe
+			fimSe
+			se ((idade >= 12) e (idade <= 17)) entao
+				contAdol1 = contAdol1 + 1; // Contagem de todos os adolescentes na RA 1
+				se (resultado == 'P') entao
+					contAdolP1 = contAdolP1 + 1; // Contagem dos adolescentes com resultado positivo na RA 1
+				fimSe
+				se (resultado == 'N') entao
+					contAdolN1 = contAdolN1 + 1; // Contagem dos adolescentes com resultado negativo na RA 1
+				fimSe
+				se (sexo == 'F') entao
+					contAdolF1 = contAdolF1 + 1; // Contagem dos adolescentes do sexo feminino na RA 1
+				fimSe
+				se (sexo == 'M') entao
+					contAdolM1 = contAdolM1 + 1; // Contagem dos adolescentes do sexo masculino na RA 1
+				fimSe
+			fimSe
+			se ((idade >= 18) e (idade <= 59)) entao
+				contAdul1 = contAdul1 + 1; // Contagem de todos os adultos na RA 1
+				se (resultado == 'P') entao
+					contAdulP1 = contAdulP1 + 1; // Contagem dos adultos com resultado positivo na RA 1
+					se (sexo == 'M') entao
+						contAdulPM1 = contAdulPM1 + 1; // Contagem dos adultos com resultado positivo e sexo masculino na RA 1
+					fimSe
+					se (sexo == 'F') entao
+						contAdulPF1 = contAdulPF1 + 1; // Contagem dos adultos com resultado positivo e sexo feminino na RA 1
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contAdulN1 = contAdulN1 + 1; // Contagem dos adultos com resultado negativo na RA 1
+				fimSe
+				se (sexo == 'F') entao
+					contAdulF1 = contAdulF1 + 1; // Contagem dos adultos do sexo feminino na RA 1
+				fimSe
+				se (sexo == 'M') entao
+					contAdulM1 = contAdulM1 + 1; // Contagem dos adultos do sexo masculino na RA 1
+				fimSe
+			fimSe
+			se (idade >= 60) entao
+				contId1 = contId1 + 1; // Contagem de todos os idosos na RA 1
+				se (resultado == 'P') entao
+					contIdP1 = contIdP1 + 1; // Contagem dos idosos com resultado positivo na RA 1
+					se (sexo == 'F') entao
+						contIdPF1 = contIdPF1 + 1; // Contagem dos idosos com resultado positivo e sexo feminino na RA 1
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contIdN1 = contIdN1 + 1; // Contagem dos idosos com resultado negativo na RA 1
+				fimSe
+				se (sexo == 'F') entao
+					contIdF1 = contIdF1 + 1; // Contagem dos idosos do sexo feminino na RA 1
+				fimSe
+				se (sexo == 'M') entao
+					contIdM1 = contIdM1 + 1; // Contagem dos idosos do sexo masculino na RA 1
+				fimSe
+			fimSe
+		enquanto(idade < 0);
+
+		faca
+			escreval("Deseja participar da pesquisa (S/N)? "); // Variável de controle novamente para que o looping não seja infinito
+			leiaCaracter(controle);
+			controle = maiusculoCaracter(controle);
+			se ((controle != 'S') e (controle != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (controle == 'S') entao
+				contTestes1 = contTestes1 + 1; // letra A
+			fimSe
+		enquanto ((controle != 'S') e (controle != 'N'));
+	fimEnquanto
+
+	// Introduzindo dados RA 2
+	escreval(" ");
+	faca
+		escreval("Nome da segunda Região Administrativa: "); // Inserindo o nome da RA 2
+		leia(RA2);
+		se (tamanhoTexto(RA2) == 0) entao
+			escreval("Digite o nome da segunda Região Administrativa.");
+		fimSe
+	enquanto (tamanhoTexto(RA2) == 0); // Não permitir campo vazio
+
+	faca
+		escreval("Você fez o teste e deseja participar da pesquisa (S/N)? "); // Variável de controle do looping
+		leiaCaracter(controle);
+		controle = maiusculoCaracter(controle);
+		se ((controle != 'S') e (controle != 'N')) entao
+			escreval("Opinião inválida.");
+		fimSe
+		se (controle == 'S') entao
+			contTestes2 = contTestes2 + 1; // letra A: contagem do total de testes realizados na RA 2
+		fimSe
+	enquanto ((controle != 'S') e (controle != 'N')); // Validação da variável de controle
+
+	enquanto (controle != 'N') faca
+		faca
+			escreval("Sexo (F/M): "); // Inserindo o sexo
+			leiaCaracter(sexo);
+			sexo = maiusculoCaracter(sexo);
+			se ((sexo != 'F') e (sexo != 'M')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (sexo == 'F') entao
+				contF2 = contF2 + 1; // letra B: contagem de pessoas do sexo feminino em todas as faixas etárias na RA 2
+			fimSe
+			se (sexo == 'M') entao
+				contM2 = contM2 + 1; // letra B: contagem de pessoas do sexo masculino em todas as faixas etárias na RA 2
+			fimSe
+		enquanto ((sexo != 'F') e (sexo != 'M')); // Validação do sexo
+
+		faca
+			escreval("Resultado do seu teste: "); // Inserindo o resultado do teste
+			escreval("P - positivo / N - negativo");
+			leiaCaracter(resultado);
+			resultado = maiusculoCaracter(resultado);
+			se ((resultado != 'P') e (resultado != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (resultado == 'P') entao
+				contP2 = contP2 + 1; // Contagem dos resultados positivos na RA 2
+			fimSe
+			se (resultado == 'N') entao
+				contN2 = contN2 + 1; // Contagem dos resultados negativos na RA 2
+			fimSe
+		enquanto ((resultado != 'P') e (resultado != 'N')); // Validando o resultado do teste
+
+		faca
+			faca
+				escreval("Idade: "); // Inserindo a idade
+				leia(idade);
+				se (idade < 0) entao
+					escreval("Idade inválida.");
+				fimSe
+			enquanto (idade < 0);
+			somaIdades2 = somaIdades2 + idade; // Somando todas as idades inseridas na RA 2
+			se ((idade >= 0) e (idade <= 11)) entao
+				contC2 = contC2 + 1; // Contagem de todas as crianças na RA 2
+				se (resultado == 'P') entao
+					contCP2 = contCP2 + 1; // Contagem das crianças com resultado positivo na RA 2
+				fimSe
+				se (resultado == 'N') entao
+					contCN2 = contCN2 + 1; // Contagem das crianças com resultado negativo na RA 2
+				fimSe
+				se (sexo == 'F') entao
+					contCF2 = contCF2 + 1; // Contagem das crianças do sexo feminino na RA 2
+				fimSe
+				se (sexo == 'M') entao
+					contCM2 = contCM2 + 1; // Contagem das crianças do sexo masculino na RA 2
+				fimSe
+			fimSe
+			se ((idade >= 12) e (idade <= 17)) entao
+				contAdol2 = contAdol2 + 1; // Contagem de todos os adolescentes na RA 2
+				se (resultado == 'P') entao
+					contAdolP2 = contAdolP2 + 1; // Contagem dos adolescentes com resultado positivo na RA 2
+				fimSe
+				se (resultado == 'N') entao
+					contAdolN2 = contAdolN2 + 1; // Contagem dos adolescentes com resultado negativo na RA 2
+				fimSe
+				se (sexo == 'F') entao
+					contAdolF2 = contAdolF2 + 1; // Contagem dos adolescentes do sexo feminino na RA 2
+				fimSe
+				se (sexo == 'M') entao
+					contAdolM2 = contAdolM2 + 1; // Contagem dos adolescentes do sexo masculino na RA 2
+				fimSe
+			fimSe
+			se ((idade >= 18) e (idade <= 59)) entao
+				contAdul2 = contAdul2 + 1; // Contagem de todos os adultos na RA 2
+				se (resultado == 'P') entao
+					contAdulP2 = contAdulP2 + 1; // Contagem dos adultos com resultado positivo na RA 2
+					se (sexo == 'M') entao
+						contAdulPM2 = contAdulPM2 + 1; // Contagem dos adultos com resultado positivo e sexo masculino na RA 2
+					fimSe
+					se (sexo == 'F') entao
+						contAdulPF2 = contAdulPF2 + 1; // Contagem dos adultos com resultado positivo e sexo feminino na RA 2
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contAdulN2 = contAdulN2 + 1; // Contagem dos adultos com resultado negativo na RA 2
+				fimSe
+				se (sexo == 'F') entao
+					contAdulF2 = contAdulF2 + 1; // Contagem dos adultos do sexo feminino na RA 2
+				fimSe
+				se (sexo == 'M') entao
+					contAdulM2 = contAdulM2 + 1; // Contagem dos adultos do sexo masculino na RA 2
+				fimSe
+			fimSe
+			se (idade >= 60) entao
+				contId2 = contId2 + 1; // Contagem de todos os idosos na RA 2
+				se (resultado == 'P') entao
+					contIdP2 = contIdP2 + 1; // Contagem dos idosos com resultado positivo na RA 2
+					se (sexo == 'F') entao
+						contIdPF2 = contIdPF2 + 1; // Contagem dos idosos com resultado positivo e sexo feminino na RA 2
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contIdN2 = contIdN2 + 1; // Contagem dos idosos com resultado negativo na RA 2
+				fimSe
+				se (sexo == 'F') entao
+					contIdF2 = contIdF2 + 1; // Contagem dos idosos do sexo feminino na RA 2
+				fimSe
+				se (sexo == 'M') entao
+					contIdM2 = contIdM2 + 1; // Contagem dos idosos do sexo masculino na RA 2
+				fimSe
+			fimSe
+		enquanto(idade < 0);
+
+		faca
+			escreval("Deseja participar da pesquisa (S/N)? "); // Variável de controle novamente para que o looping não seja infinito
+			leiaCaracter(controle);
+			controle = maiusculoCaracter(controle);
+			se ((controle != 'S') e (controle != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (controle == 'S') entao
+				contTestes2 = contTestes2 + 1; // letra A
+			fimSe
+		enquanto ((controle != 'S') e (controle != 'N'));
+	fimEnquanto
+
+	// Introduzindo dados RA 3
+	escreval(" ");
+	faca
+		escreval("Nome da terceira Região Administrativa: "); // Inserindo o nome da RA 3
+		leia(RA3);
+		se (tamanhoTexto(RA3) == 0) entao
+			escreval("Digite o nome da terceira Região Administrativa.");
+		fimSe
+	enquanto (tamanhoTexto(RA3) == 0); // Não permitir campo vazio
+
+	faca
+		escreval("Você fez o teste e deseja participar da pesquisa (S/N)? "); // Variável de controle do looping
+		leiaCaracter(controle);
+		controle = maiusculoCaracter(controle);
+		se ((controle != 'S') e (controle != 'N')) entao
+			escreval("Opinião inválida.");
+		fimSe
+		se (controle == 'S') entao
+			contTestes3 = contTestes3 + 1; // letra A: contagem do total de testes realizados na RA 3
+		fimSe
+	enquanto ((controle != 'S') e (controle != 'N')); // Validação da variável de controle
+
+	enquanto (controle != 'N') faca
+		faca
+			escreval("Sexo (F/M): "); // Inserindo o sexo
+			leiaCaracter(sexo);
+			sexo = maiusculoCaracter(sexo);
+			se ((sexo != 'F') e (sexo != 'M')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (sexo == 'F') entao
+				contF3 = contF3 + 1; // letra B: contagem de pessoas do sexo feminino em todas as faixas etárias na RA 3
+			fimSe
+			se (sexo == 'M') entao
+				contM3 = contM3 + 1; // letra B: contagem de pessoas do sexo masculino em todas as faixas etárias na RA 3
+			fimSe
+		enquanto ((sexo != 'F') e (sexo != 'M')); // Validação do sexo
+
+		faca
+			escreval("Resultado do seu teste: "); // Inserindo o resultado do teste
+			escreval("P - positivo / N - negativo");
+			leiaCaracter(resultado);
+			resultado = maiusculoCaracter(resultado);
+			se ((resultado != 'P') e (resultado != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (resultado == 'P') entao
+				contP3 = contP3 + 1; // Contagem dos resultados positivos na RA 3
+			fimSe
+			se (resultado == 'N') entao
+				contN3 = contN3 + 1; // Contagem dos resultados negativos na RA 3
+			fimSe
+		enquanto ((resultado != 'P') e (resultado != 'N')); // Validando o resultado do teste
+
+		faca
+			faca
+				escreval("Idade: "); // Inserindo a idade
+				leia(idade);
+				se (idade < 0) entao
+					escreval("Idade inválida.");
+				fimSe
+			enquanto (idade < 0);
+			somaIdades3 = somaIdades3 + idade; // Somando todas as idades inseridas na RA 3
+			se ((idade >= 0) e (idade <= 11)) entao
+				contC3 = contC3 + 1; // Contagem de todas as crianças na RA 3
+				se (resultado == 'P') entao
+					contCP3 = contCP3 + 1; // Contagem das crianças com resultado positivo na RA 3
+				fimSe
+				se (resultado == 'N') entao
+					contCN3 = contCN3 + 1; // Contagem das crianças com resultado negativo na RA 3
+				fimSe
+				se (sexo == 'F') entao
+					contCF3 = contCF3 + 1; // Contagem das crianças do sexo feminino na RA 3
+				fimSe
+				se (sexo == 'M') entao
+					contCM3 = contCM3 + 1; // Contagem das crianças do sexo masculino na RA 3
+				fimSe
+			fimSe
+			se ((idade >= 12) e (idade <= 17)) entao
+				contAdol3 = contAdol3 + 1; // Contagem de todos os adolescentes na RA 3
+				se (resultado == 'P') entao
+					contAdolP3 = contAdolP3 + 1; // Contagem dos adolescentes com resultado positivo na RA 3
+				fimSe
+				se (resultado == 'N') entao
+					contAdolN3 = contAdolN3 + 1; // Contagem dos adolescentes com resultado negativo na RA 3
+				fimSe
+				se (sexo == 'F') entao
+					contAdolF3 = contAdolF3 + 1; // Contagem dos adolescentes do sexo feminino na RA 3
+				fimSe
+				se (sexo == 'M') entao
+					contAdolM3 = contAdolM3 + 1; // Contagem dos adolescentes do sexo masculino na RA 3
+				fimSe
+			fimSe
+			se ((idade >= 18) e (idade <= 59)) entao
+				contAdul3 = contAdul3 + 1; // Contagem de todos os adultos na RA 3
+				se (resultado == 'P') entao
+					contAdulP3 = contAdulP3 + 1; // Contagem dos adultos com resultado positivo na RA 3
+					se (sexo == 'M') entao
+						contAdulPM3 = contAdulPM3 + 1; // Contagem dos adultos com resultado positivo e sexo masculino na RA 3
+					fimSe
+					se (sexo == 'F') entao
+						contAdulPF3 = contAdulPF3 + 1; // Contagem dos adultos com resultado positivo e sexo feminino na RA 3
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contAdulN3 = contAdulN3 + 1; // Contagem dos adultos com resultado negativo na RA 3
+				fimSe
+				se (sexo == 'F') entao
+					contAdulF3 = contAdulF3 + 1; // Contagem dos adultos do sexo feminino na RA 3
+				fimSe
+				se (sexo == 'M') entao
+					contAdulM3 = contAdulM3 + 1; // Contagem dos adultos do sexo masculino na RA 3
+				fimSe
+			fimSe
+			se (idade >= 60) entao
+				contId3 = contId3 + 1; // Contagem de todos os idosos na RA 3
+				se (resultado == 'P') entao
+					contIdP3 = contIdP3 + 1; // Contagem dos idosos com resultado positivo na RA 3
+					se (sexo == 'F') entao
+						contIdPF3 = contIdPF3 + 1; // Contagem dos idosos com resultado positivo e sexo feminino na RA 3
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contIdN3 = contIdN3 + 1; // Contagem dos idosos com resultado negativo na RA 3
+				fimSe
+				se (sexo == 'F') entao
+					contIdF3 = contIdF3 + 1; // Contagem dos idosos do sexo feminino na RA 3
+				fimSe
+				se (sexo == 'M') entao
+					contIdM3 = contIdM3 + 1; // Contagem dos idosos do sexo masculino na RA 3
+				fimSe
+			fimSe
+		enquanto(idade < 0);
+
+		faca
+			escreval("Deseja participar da pesquisa (S/N)? "); // Variável de controle novamente para que o looping não seja infinito
+			leiaCaracter(controle);
+			controle = maiusculoCaracter(controle);
+			se ((controle != 'S') e (controle != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (controle == 'S') entao
+				contTestes3 = contTestes3 + 1; // letra A
+			fimSe
+		enquanto ((controle != 'S') e (controle != 'N'));
+	fimEnquanto
+
+	// Introduzindo dados RA 4
+	escreval(" ");
+	faca
+		escreval("Nome da quarta Região Administrativa: "); // Inserindo o nome da RA 4
+		leia(RA4);
+		se (tamanhoTexto(RA4) == 0) entao
+			escreval("Digite o nome da quarta Região Administrativa.");
+		fimSe
+	enquanto (tamanhoTexto(RA4) == 0); // Não permitir campo vazio
+
+	faca
+		escreval("Você fez o teste e deseja participar da pesquisa (S/N)? "); // Variável de controle do looping
+		leiaCaracter(controle);
+		controle = maiusculoCaracter(controle);
+		se ((controle != 'S') e (controle != 'N')) entao
+			escreval("Opinião inválida.");
+		fimSe
+		se (controle == 'S') entao
+			contTestes4 = contTestes4 + 1; // letra A: contagem do total de testes realizados na RA 4
+		fimSe
+	enquanto ((controle != 'S') e (controle != 'N')); // Validação da variável de controle
+
+	enquanto (controle != 'N') faca
+		faca
+			escreval("Sexo (F/M): "); // Inserindo o sexo
+			leiaCaracter(sexo);
+			sexo = maiusculoCaracter(sexo);
+			se ((sexo != 'F') e (sexo != 'M')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (sexo == 'F') entao
+				contF4 = contF4 + 1; // letra B: contagem de pessoas do sexo feminino em todas as faixas etárias na RA 4
+			fimSe
+			se (sexo == 'M') entao
+				contM4 = contM4 + 1; // letra B: contagem de pessoas do sexo masculino em todas as faixas etárias na RA 4
+			fimSe
+		enquanto ((sexo != 'F') e (sexo != 'M')); // Validação do sexo
+
+		faca
+			escreval("Resultado do seu teste: "); // Inserindo o resultado do teste
+			escreval("P - positivo / N - negativo");
+			leiaCaracter(resultado);
+			resultado = maiusculoCaracter(resultado);
+			se ((resultado != 'P') e (resultado != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (resultado == 'P') entao
+				contP4 = contP4 + 1; // Contagem dos resultados positivos na RA 4
+			fimSe
+			se (resultado == 'N') entao
+				contN4 = contN4 + 1; // Contagem dos resultados negativos na RA 4
+			fimSe
+		enquanto ((resultado != 'P') e (resultado != 'N')); // Validando o resultado do teste
+
+		faca
+			faca
+				escreval("Idade: "); // Inserindo a idade
+				leia(idade);
+				se (idade < 0) entao
+					escreval("Idade inválida.");
+				fimSe
+			enquanto (idade < 0);
+			somaIdades4 = somaIdades4 + idade; // Somando todas as idades inseridas na RA 4
+			se ((idade >= 0) e (idade <= 11)) entao
+				contC4 = contC4 + 1; // Contagem de todas as crianças na RA 4
+				se (resultado == 'P') entao
+					contCP4 = contCP4 + 1; // Contagem das crianças com resultado positivo na RA 4
+				fimSe
+				se (resultado == 'N') entao
+					contCN4 = contCN4 + 1; // Contagem das crianças com resultado negativo na RA 4
+				fimSe
+				se (sexo == 'F') entao
+					contCF4 = contCF4 + 1; // Contagem das crianças do sexo feminino na RA 4
+				fimSe
+				se (sexo == 'M') entao
+					contCM4 = contCM4 + 1; // Contagem das crianças do sexo masculino na RA 4
+				fimSe
+			fimSe
+			se ((idade >= 12) e (idade <= 17)) entao
+				contAdol4 = contAdol4 + 1; // Contagem de todos os adolescentes na RA 4
+				se (resultado == 'P') entao
+					contAdolP4 = contAdolP4 + 1; // Contagem dos adolescentes com resultado positivo na RA 4
+				fimSe
+				se (resultado == 'N') entao
+					contAdolN4 = contAdolN4 + 1; // Contagem dos adolescentes com resultado negativo na RA 4
+				fimSe
+				se (sexo == 'F') entao
+					contAdolF4 = contAdolF4 + 1; // Contagem dos adolescentes do sexo feminino na RA 4
+				fimSe
+				se (sexo == 'M') entao
+					contAdolM4 = contAdolM4 + 1; // Contagem dos adolescentes do sexo masculino na RA 4
+				fimSe
+			fimSe
+			se ((idade >= 18) e (idade <= 59)) entao
+				contAdul4 = contAdul4 + 1; // Contagem de todos os adultos na RA 4
+				se (resultado == 'P') entao
+					contAdulP4 = contAdulP4 + 1; // Contagem dos adultos com resultado positivo na RA 4
+					se (sexo == 'M') entao
+						contAdulPM4 = contAdulPM4 + 1; // Contagem dos adultos com resultado positivo e sexo masculino na RA 4
+					fimSe
+					se (sexo == 'F') entao
+						contAdulPF4 = contAdulPF4 + 1; // Contagem dos adultos com resultado positivo e sexo feminino na RA 4
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contAdulN4 = contAdulN4 + 1; // Contagem dos adultos com resultado negativo na RA 4
+				fimSe
+				se (sexo == 'F') entao
+					contAdulF4 = contAdulF4 + 1; // Contagem dos adultos do sexo feminino na RA 4
+				fimSe
+				se (sexo == 'M') entao
+					contAdulM4 = contAdulM4 + 1; // Contagem dos adultos do sexo masculino na RA 4
+				fimSe
+			fimSe
+			se (idade >= 60) entao
+				contId4 = contId4 + 1; // Contagem de todos os idosos na RA 4
+				se (resultado == 'P') entao
+					contIdP4 = contIdP4 + 1; // Contagem dos idosos com resultado positivo na RA 4
+					se (sexo == 'F') entao
+						contIdPF4 = contIdPF4 + 1; // Contagem dos idosos com resultado positivo e sexo feminino na RA 4
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contIdN4 = contIdN4 + 1; // Contagem dos idosos com resultado negativo na RA 4
+				fimSe
+				se (sexo == 'F') entao
+					contIdF4 = contIdF4 + 1; // Contagem dos idosos do sexo feminino na RA 4
+				fimSe
+				se (sexo == 'M') entao
+					contIdM4 = contIdM4 + 1; // Contagem dos idosos do sexo masculino na RA 4
+				fimSe
+			fimSe
+		enquanto(idade < 0);
+
+		faca
+			escreval("Deseja participar da pesquisa (S/N)? "); // Variável de controle novamente para que o looping não seja infinito
+			leiaCaracter(controle);
+			controle = maiusculoCaracter(controle);
+			se ((controle != 'S') e (controle != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (controle == 'S') entao
+				contTestes4 = contTestes4 + 1; // letra A
+			fimSe
+		enquanto ((controle != 'S') e (controle != 'N'));
+	fimEnquanto
+
+	// Introduzindo dados RA 5
+	escreval(" ");
+	faca
+		escreval("Nome da quinta Região Administrativa: "); // Inserindo o nome da RA 5
+		leia(RA5);
+		se (tamanhoTexto(RA4) == 0) entao
+			escreval("Digite o nome da quinta Região Administrativa.");
+		fimSe
+	enquanto (tamanhoTexto(RA5) == 0); // Não permitir campo vazio
+
+	faca
+		escreval("Você fez o teste e deseja participar da pesquisa (S/N)? "); // Variável de controle do looping
+		leiaCaracter(controle);
+		controle = maiusculoCaracter(controle);
+		se ((controle != 'S') e (controle != 'N')) entao
+			escreval("Opinião inválida.");
+		fimSe
+		se (controle == 'S') entao
+			contTestes5 = contTestes5 + 1; // letra A: contagem do total de testes realizados na RA 5
+		fimSe
+	enquanto ((controle != 'S') e (controle != 'N')); // Validação da variável de controle
+
+	enquanto (controle != 'N') faca
+		faca
+			escreval("Sexo (F/M): "); // Inserindo o sexo
+			leiaCaracter(sexo);
+			sexo = maiusculoCaracter(sexo);
+			se ((sexo != 'F') e (sexo != 'M')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (sexo == 'F') entao
+				contF5 = contF5 + 1; // letra B: contagem de pessoas do sexo feminino em todas as faixas etárias na RA 5
+			fimSe
+			se (sexo == 'M') entao
+				contM5 = contM5 + 1; // letra B: contagem de pessoas do sexo masculino em todas as faixas etárias na RA 5
+			fimSe
+		enquanto ((sexo != 'F') e (sexo != 'M')); // Validação do sexo
+
+		faca
+			escreval("Resultado do seu teste: "); // Inserindo o resultado do teste
+			escreval("P - positivo / N - negativo");
+			leiaCaracter(resultado);
+			resultado = maiusculoCaracter(resultado);
+			se ((resultado != 'P') e (resultado != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (resultado == 'P') entao
+				contP5 = contP5 + 1; // Contagem dos resultados positivos na RA 5
+			fimSe
+			se (resultado == 'N') entao
+				contN5 = contN5 + 1; // Contagem dos resultados negativos na RA 5
+			fimSe
+		enquanto ((resultado != 'P') e (resultado != 'N')); // Validando o resultado do teste
+
+		faca
+			faca
+				escreval("Idade: "); // Inserindo a idade
+				leia(idade);
+				se (idade < 0) entao
+					escreval("Idade inválida.");
+				fimSe
+			enquanto (idade < 0);
+			somaIdades5 = somaIdades5 + idade; // Somando todas as idades inseridas na RA 5
+			se ((idade >= 0) e (idade <= 11)) entao
+				contC5 = contC5 + 1; // Contagem de todas as crianças na RA 5
+				se (resultado == 'P') entao
+					contCP5 = contCP5 + 1; // Contagem das crianças com resultado positivo na RA 5
+				fimSe
+				se (resultado == 'N') entao
+					contCN5 = contCN5 + 1; // Contagem das crianças com resultado negativo na RA 5
+				fimSe
+				se (sexo == 'F') entao
+					contCF5 = contCF5 + 1; // Contagem das crianças do sexo feminino na RA 5
+				fimSe
+				se (sexo == 'M') entao
+					contCM5 = contCM5 + 1; // Contagem das crianças do sexo masculino na RA 5
+				fimSe
+			fimSe
+			se ((idade >= 12) e (idade <= 17)) entao
+				contAdol5 = contAdol5 + 1; // Contagem de todos os adolescentes na RA 5
+				se (resultado == 'P') entao
+					contAdolP5 = contAdolP5 + 1; // Contagem dos adolescentes com resultado positivo na RA 5
+				fimSe
+				se (resultado == 'N') entao
+					contAdolN5 = contAdolN5 + 1; // Contagem dos adolescentes com resultado negativo na RA 5
+				fimSe
+				se (sexo == 'F') entao
+					contAdolF5 = contAdolF5 + 1; // Contagem dos adolescentes do sexo feminino na RA 5
+				fimSe
+				se (sexo == 'M') entao
+					contAdolM5 = contAdolM5 + 1; // Contagem dos adolescentes do sexo masculino na RA 5
+				fimSe
+			fimSe
+			se ((idade >= 18) e (idade <= 59)) entao
+				contAdul5 = contAdul5 + 1; // Contagem de todos os adultos na RA 5
+				se (resultado == 'P') entao
+					contAdulP5 = contAdulP5 + 1; // Contagem dos adultos com resultado positivo na RA 5
+					se (sexo == 'M') entao
+						contAdulPM5 = contAdulPM5 + 1; // Contagem dos adultos com resultado positivo e sexo masculino na RA 5
+					fimSe
+					se (sexo == 'F') entao
+						contAdulPF5 = contAdulPF5 + 1; // Contagem dos adultos com resultado positivo e sexo feminino na RA 5
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contAdulN5 = contAdulN5 + 1; // Contagem dos adultos com resultado negativo na RA 5
+				fimSe
+				se (sexo == 'F') entao
+					contAdulF5 = contAdulF5 + 1; // Contagem dos adultos do sexo feminino na RA 5
+				fimSe
+				se (sexo == 'M') entao
+					contAdulM5 = contAdulM5 + 1; // Contagem dos adultos do sexo masculino na RA 5
+				fimSe
+			fimSe
+			se (idade >= 60) entao
+				contId5 = contId5 + 1; // Contagem de todos os idosos na RA 5
+				se (resultado == 'P') entao
+					contIdP5 = contIdP5 + 1; // Contagem dos idosos com resultado positivo na RA 5
+					se (sexo == 'F') entao
+						contIdPF5 = contIdPF5 + 1; // Contagem dos idosos com resultado positivo e sexo feminino na RA 5
+					fimSe
+				fimSe
+				se (resultado == 'N') entao
+					contIdN5 = contIdN5 + 1; // Contagem dos idosos com resultado negativo na RA 5
+				fimSe
+				se (sexo == 'F') entao
+					contIdF5 = contIdF5 + 1; // Contagem dos idosos do sexo feminino na RA 5
+				fimSe
+				se (sexo == 'M') entao
+					contIdM5 = contIdM5 + 1; // Contagem dos idosos do sexo masculino na RA 5
+				fimSe
+			fimSe
+		enquanto(idade < 0);
+
+		faca
+			escreval("Deseja participar da pesquisa (S/N)? "); // Variável de controle novamente para que o looping não seja infinito
+			leiaCaracter(controle);
+			controle = maiusculoCaracter(controle);
+			se ((controle != 'S') e (controle != 'N')) entao
+				escreval("Opção inválida.");
+			fimSe
+			se (controle == 'S') entao
+				contTestes5 = contTestes5 + 1; // letra A
+			fimSe
+		enquanto ((controle != 'S') e (controle != 'N'));
+	fimEnquanto
+
+	// Calculos para RA 1
+	se (contTestes1 > 0) entao
+		porcentF1 = (contF1 / contTestes1) * 100; // letra C: percentual de pessoas do sexo feminino em todas as faixas etárias na RA 1
+		porcentM1 = (contM1 / contTestes1) * 100; // letra C: percentual de pessoas do sexo masculino em todas as faixas etárias na RA 1
+		mediaIdades1 = somaIdades1 / contTestes1; // letra F: média de idades de toda a população que fez os testes na RA 1
+		porcentP1 = (contP1 / contTestes1) * 100; // letra G: percentual de pessoas infectadas na RA 1
+		porcentN1 = (contN1 / contTestes1) * 100; // letra G: percentual de pessoas infectadas na RA 1
+	fimSe
+	se (contTestes1 == 0) entao
+		porcentF1 = 0;
+		porcentM1 = 0;
+		mediaIdades1 = 0;
+		porcentP1 = 0;
+		porcentN1 = 0;
+	fimSe
+	se (contC1 > 0) entao
+		porcentCP1 = (contCP1 / contC1) * 100; // Porcentagem de crianças com teste positivo na RA 1
+		porcentCN1 = (contCN1 / contC1) * 100; // Porcentagem de crianças com teste negativo na RA 1
+	fimSe
+	se (contC1 == 0) entao
+		porcentCP1 = 0;
+		porcentCN1 = 0;
+	fimSe
+	se (contAdol1 > 0) entao
+		porcentAdolP1 = (contAdolP1 / contAdol1) * 100; // Porcentagem de adolescentes com teste positivo na RA 1
+		porcentAdolN1 = (contAdolN1 / contAdol1) * 100; // Porcentagem de adolescentes com teste negativo na RA 1
+	fimSe
+	se (contAdol1 == 0) entao
+		porcentAdolP1 = 0;
+		porcentAdolN1 = 0;
+	fimSe
+	se (contAdul1 > 0) entao
+		porcentAdulP1 = (contAdulP1 / contAdul1) * 100; // Porcentagem de adultos com teste positivo na RA 1
+		porcentAdulN1 = (contAdulN1 / contAdul1) * 100; // Porcentagem de adultos com teste negativo na RA 1
+	fimSe
+	se (contAdul1 == 0) entao
+		porcentAdulP1 = 0;
+		porcentAdulN1 = 0;
+	fimSe
+	se (contId1 > 0) entao
+		porcentIdP1 = (contIdP1 / contId1) * 100; // Porcentagem de idosos com teste positivo na RA 1
+		porcentIdN1 = (contIdN1 / contId1) * 100; // Porcentagem de idosos com teste negativo na RA 1
+	fimSe
+	se (contId1 == 0) entao
+		porcentIdP1 = 0;
+		porcentIdN1 = 0;
+	fimSe
+
+	// Calculos para RA 2
+	se (contTestes2 > 0) entao
+		porcentF2 = (contF2 / contTestes2) * 100; // letra C: percentual de pessoas do sexo feminino em todas as faixas etárias na RA 2
+		porcentM2 = (contM2 / contTestes2) * 100; // letra C: percentual de pessoas do sexo masculino em todas as faixas etárias na RA 2
+		mediaIdades2 = somaIdades2 / contTestes2; // letra F: média de idades de toda a população que fez os testes na RA 2
+		porcentP2 = (contP2 / contTestes2) * 100; // letra G: percentual de pessoas infectadas na RA 2
+		porcentN2 = (contN2 / contTestes2) * 100; // letra G: percentual de pessoas infectadas na RA 2
+	fimSe
+	se (contTestes2 == 0) entao
+		porcentF2 = 0;
+		porcentM2 = 0;
+		mediaIdades2 = 0;
+		porcentP2 = 0;
+		porcentN2 = 0;
+	fimSe
+	se (contC2 > 0) entao
+		porcentCP2 = (contCP2 / contC2) * 100; // Porcentagem de crianças com teste positivo na RA 2
+		porcentCN2 = (contCN2 / contC2) * 100; // Porcentagem de crianças com teste negativo na RA 2
+	fimSe
+	se (contC2 == 0) entao
+		porcentCP2 = 0;
+		porcentCN2 = 0;
+	fimSe
+	se (contAdol2 > 0) entao
+		porcentAdolP2 = (contAdolP2 / contAdol2) * 100; // Porcentagem de adolescentes com teste positivo na RA 2
+		porcentAdolN2 = (contAdolN2 / contAdol2) * 100; // Porcentagem de adolescentes com teste negativo na RA 2
+	fimSe
+	se (contAdol2 == 0) entao
+		porcentAdolP2 = 0;
+		porcentAdolN2 = 0;
+	fimSe
+	se (contAdul2 > 0) entao
+		porcentAdulP2 = (contAdulP2 / contAdul2) * 100; // Porcentagem de adultos com teste positivo na RA 1
+		porcentAdulN2 = (contAdulN2 / contAdul2) * 100; // Porcentagem de adultos com teste negativo na RA 1
+	fimSe
+	se (contAdul2 == 0) entao
+		porcentAdulP2 = 0;
+		porcentAdulN2 = 0;
+	fimSe
+	se (contId2 > 0) entao
+		porcentIdP2 = (contIdP2 / contId2) * 100; // Porcentagem de idosos com teste positivo na RA 2
+		porcentIdN2 = (contIdN2 / contId2) * 100; // Porcentagem de idosos com teste negativo na RA 2
+	fimSe
+	se (contId2 == 0) entao
+		porcentIdP2 = 0;
+		porcentIdN2 = 0;
+	fimSe
+
+	// Calculos para RA 3
+	se (contTestes3 > 0) entao
+		porcentF3 = (contF3 / contTestes3) * 100; // letra C: percentual de pessoas do sexo feminino em todas as faixas etárias na RA 3
+		porcentM3 = (contM3 / contTestes3) * 100; // letra C: percentual de pessoas do sexo masculino em todas as faixas etárias na RA 3
+		mediaIdades3 = somaIdades3 / contTestes3; // letra F: média de idades de toda a população que fez os testes na RA 3
+		porcentP3 = (contP3 / contTestes3) * 100; // letra G: percentual de pessoas infectadas na RA 3
+		porcentN3 = (contN3 / contTestes3) * 100; // letra G: percentual de pessoas infectadas na RA 3
+	fimSe
+	se (contTestes3 == 0) entao
+		porcentF3 = 0;
+		porcentM3 = 0;
+		mediaIdades3 = 0;
+		porcentP3 = 0;
+		porcentN3 = 0;
+	fimSe
+	se (contC3 > 0) entao
+		porcentCP3 = (contCP3 / contC3) * 100; // Porcentagem de crianças com teste positivo na RA 3
+		porcentCN3 = (contCN3 / contC3) * 100; // Porcentagem de crianças com teste negativo na RA 3
+	fimSe
+	se (contC3 == 0) entao
+		porcentCP3 = 0;
+		porcentCN3 = 0;
+	fimSe
+	se (contAdol3 > 0) entao
+		porcentAdolP3 = (contAdolP3 / contAdol3) * 100; // Porcentagem de adolescentes com teste positivo na RA 3
+		porcentAdolN3 = (contAdolN3 / contAdol3) * 100; // Porcentagem de adolescentes com teste negativo na RA 3
+	fimSe
+	se (contAdol3 == 0) entao
+		porcentAdolP3 = 0;
+		porcentAdolN3 = 0;
+	fimSe
+	se (contAdul3 > 0) entao
+		porcentAdulP3 = (contAdulP3 / contAdul3) * 100; // Porcentagem de adultos com teste positivo na RA 3
+		porcentAdulN3 = (contAdulN3 / contAdul3) * 100; // Porcentagem de adultos com teste negativo na RA 3
+	fimSe
+	se (contAdul3 == 0) entao
+		porcentAdulP3 = 0;
+		porcentAdulN3 = 0;
+	fimSe
+	se (contId3 > 0) entao
+		porcentIdP3 = (contIdP3 / contId3) * 100; // Porcentagem de idosos com teste positivo na RA 3
+		porcentIdN3 = (contIdN3 / contId3) * 100; // Porcentagem de idosos com teste negativo na RA 3
+	fimSe
+	se (contId3 == 0) entao
+		porcentIdP3 = 0;
+		porcentIdN3 = 0;
+	fimSe
+
+	// Calculos para RA 4
+	se (contTestes4 > 0) entao
+		porcentF4 = (contF4 / contTestes4) * 100; // letra C: percentual de pessoas do sexo feminino em todas as faixas etárias na RA 4
+		porcentM4 = (contM4 / contTestes4) * 100; // letra C: percentual de pessoas do sexo masculino em todas as faixas etárias na RA 4
+		mediaIdades4 = somaIdades4 / contTestes4; // letra F: média de idades de toda a população que fez os testes na RA 4
+		porcentP4 = (contP4 / contTestes4) * 100; // letra G: percentual de pessoas infectadas na RA 4
+		porcentN4 = (contN4 / contTestes4) * 100; // letra G: percentual de pessoas infectadas na RA 4
+	fimSe
+	se (contTestes4 == 0) entao
+		porcentF4 = 0;
+		porcentM4 = 0;
+		mediaIdades4 = 0;
+		porcentP4 = 0;
+		porcentN4 = 0;
+	fimSe
+	se (contC4 > 0) entao
+		porcentCP4 = (contCP4 / contC4) * 100; // Porcentagem de crianças com teste positivo na RA 4
+		porcentCN4 = (contCN4 / contC4) * 100; // Porcentagem de crianças com teste negativo na RA 4
+	fimSe
+	se (contC4 == 0) entao
+		porcentCP4 = 0;
+		porcentCN4 = 0;
+	fimSe
+	se (contAdol4 > 0) entao
+		porcentAdolP4 = (contAdolP4 / contAdol4) * 100; // Porcentagem de adolescentes com teste positivo na RA 4
+		porcentAdolN4 = (contAdolN4 / contAdol4) * 100; // Porcentagem de adolescentes com teste negativo na RA 4
+	fimSe
+	se (contAdol4 == 0) entao
+		porcentAdolP4 = 0;
+		porcentAdolN4 = 0;
+	fimSe
+	se (contAdul4 > 0) entao
+		porcentAdulP4 = (contAdulP4 / contAdul4) * 100; // Porcentagem de adultos com teste positivo na RA 4
+		porcentAdulN4 = (contAdulN4 / contAdul4) * 100; // Porcentagem de adultos com teste negativo na RA 4
+	fimSe
+	se (contAdul4 == 0) entao
+		porcentAdulP4 = 0;
+		porcentAdulN4 = 0;
+	fimSe
+	se (contId4 > 0) entao
+		porcentIdP4 = (contIdP4 / contId4) * 100; // Porcentagem de idosos com teste positivo na RA 4
+		porcentIdN4 = (contIdN4 / contId4) * 100; // Porcentagem de idosos com teste negativo na RA 4
+	fimSe
+	se (contId4 == 0) entao
+		porcentIdP4 = 0;
+		porcentIdN4 = 0;
+	fimSe
+
+	// Calculos para RA 5
+	se (contTestes5 > 0) entao
+		porcentF5 = (contF5 / contTestes5) * 100; // letra C: percentual de pessoas do sexo feminino em todas as faixas etárias na RA 5
+		porcentM5 = (contM5 / contTestes5) * 100; // letra C: percentual de pessoas do sexo masculino em todas as faixas etárias na RA 5
+		mediaIdades5 = somaIdades5 / contTestes5; // letra F: média de idades de toda a população que fez os testes na RA 5
+		porcentP5 = (contP5 / contTestes5) * 100; // letra G: percentual de pessoas infectadas na RA 5
+		porcentN5 = (contN5 / contTestes5) * 100; // letra G: percentual de pessoas infectadas na RA 5
+	fimSe
+	se (contTestes5 == 0) entao
+		porcentF5 = 0;
+		porcentM5 = 0;
+		mediaIdades5 = 0;
+		porcentP5 = 0;
+		porcentN5 = 0;
+	fimSe
+	se (contC5 > 0) entao
+		porcentCP5 = (contCP5 / contC5) * 100; // Porcentagem de crianças com teste positivo na RA 5
+		porcentCN5 = (contCN5 / contC5) * 100; // Porcentagem de crianças com teste negativo na RA 5
+	fimSe
+	se (contC5 == 0) entao
+		porcentCP5 = 0;
+		porcentCN5 = 0;
+	fimSe
+	se (contAdol5 > 0) entao
+		porcentAdolP5 = (contAdolP5 / contAdol5) * 100; // Porcentagem de adolescentes com teste positivo na RA 5
+		porcentAdolN5 = (contAdolN5 / contAdol5) * 100; // Porcentagem de adolescentes com teste negativo na RA 5
+	fimSe
+	se (contAdol5 == 0) entao
+		porcentAdolP5 = 0;
+		porcentAdolN5 = 0;
+	fimSe
+	se (contAdul5 > 0) entao
+		porcentAdulP5 = (contAdulP5 / contAdul5) * 100; // Porcentagem de adultos com teste positivo na RA 5
+		porcentAdulN5 = (contAdulN5 / contAdul5) * 100; // Porcentagem de adultos com teste negativo na RA 5
+	fimSe
+	se (contAdul5 == 0) entao
+		porcentAdulP5 = 0;
+		porcentAdulN5 = 0;
+	fimSe
+	se (contId5 > 0) entao
+		porcentIdP5 = (contIdP5 / contId5) * 100; // Porcentagem de idosos com teste positivo na RA 5
+		porcentIdN5 = (contIdN5 / contId5) * 100; // Porcentagem de idosos com teste negativo na RA 5
+	fimSe
+	se (contId5 == 0) entao
+		porcentIdP5 = 0;
+		porcentIdN5 = 0;
+	fimSe
+
+	// Cálculos para parte 2 do Relatório
+	contPTotal = contP1 + contP2 + contP3 + contP4 + contP5;
+	contNTotal = contN1 + contN2 + contN3 + contN4 + contN5;
+	porcentAdolPTotal = porcentAdolP1 + porcentAdolP2 + porcentAdolP3 + porcentAdolP4 + porcentAdolP5;
+	porcentAdulPTotal = porcentAdulP1 + porcentAdulP2 + porcentAdulP3 + porcentAdulP4 + porcentAdulP5;
+	contAdulPMTotal = contAdulPM1 + contAdulPM2 + contAdulPM3 + contAdulPM4 + contAdulPM5;
+	contIdPFTotal = contIdPF1 + contIdPF2 + contIdPF3 + contIdPF4 + contIdPF5;
+	contAdulPFTotal = contAdulPF1 + contAdulPF2 + contAdulPF3 + contAdulPF4 + contAdulPF5;
+	contTestesTotal = contTestes1 + contTestes2 + contTestes3 + contTestes4 + contTestes5;
+	porcentIdPTotal = ((contIdP1 + contIdP2 + contIdP3 + contIdP4 + contIdP5) / contTestesTotal) * 100;
+	porcentCNTotal = ((contCN1 + contCN2 + contCN3 + contCN4 + contCN5) / contTestesTotal) * 100;
+	mediaIdadesTotal = (somaIdades1 + somaIdades2 + somaIdades3 + somaIdades4 + somaIdades5) / contTestesTotal;
+
+
+	limpaTela();
+
+	escreval("Pesquisador Responsável: " , nome); // Apresentando o nome do responsável
+	escreval("Região Administrativa: " , RA1 , " (Parte 1 do relatório)"); // Apresentando a RA 1
+	escreval (" ");
+	escreval("Faixa Etária: Crianças"); // Apresentação dos dados das Crianças na RA 1
+	escreval("Total de testes realizados: " , contC1);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contCF1);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contCM1);
+	escreval("Testes positivos: " , porcentCP1:1:2 , "%");
+	escreval("Testes negativos: " , porcentCN1:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adolescentes"); // Apresentação dos dados dos Adolescentes na RA 1
+	escreval("Total de testes realizados: " , contAdol1);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdolF1);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdolM1);
+	escreval("Testes positivos: " , porcentAdolP1:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdolN1:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adultos"); // Apresentação dos dados dos Adultos na RA 1
+	escreval("Total de testes realizados: " , contAdul1);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdulF1);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdulM1);
+	escreval("Testes positivos: " , porcentAdulP1:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdulN1:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Idosos"); // Apresentação dos dados dos Idosos na RA 1
+	escreval("Total de testes realizados: " , contId1);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contIdF1);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contIdM1);
+	escreval("Testes positivos: " , porcentIdP1:1:2 , "%");
+	escreval("Testes negativos: " , porcentIdN1:1:2 , "%");
+
+	escreval (" ");
+	escreval("Região Administrativa: " , RA2 , " (Parte 1 do relatório)"); // Apresentando a RA 2
+	escreval (" ");
+	escreval("Faixa Etária: Crianças"); // Apresentação dos dados das Crianças na RA 2
+	escreval("Total de testes realizados: " , contC2);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contCF2);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contCM2);
+	escreval("Testes positivos: " , porcentCP2:1:2 , "%");
+	escreval("Testes negativos: " , porcentCN2:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adolescentes"); // Apresentação dos dados dos Adolescentes na RA 2
+	escreval("Total de testes realizados: " , contAdol2);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdolF2);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdolM2);
+	escreval("Testes positivos: " , porcentAdolP2:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdolN2:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adultos"); // Apresentação dos dados dos Adultos na RA 2
+	escreval("Total de testes realizados: " , contAdul2);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdulF2);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdulM2);
+	escreval("Testes positivos: " , porcentAdulP2:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdulN2:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Idosos"); // Apresentação dos dados dos Idosos na RA 2
+	escreval("Total de testes realizados: " , contId2);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contIdF2);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contIdM2);
+	escreval("Testes positivos: " , porcentIdP2:1:2 , "%");
+	escreval("Testes negativos: " , porcentIdN2:1:2 , "%");
+
+	escreval (" ");
+	escreval("Região Administrativa: " , RA3 , " (Parte 1 do relatório)"); // Apresentando a RA 3
+	escreval (" ");
+	escreval("Faixa Etária: Crianças"); // Apresentação dos dados das Crianças da RA 3
+	escreval("Total de testes realizados: " , contC3);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contCF3);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contCM3);
+	escreval("Testes positivos: " , porcentCP3:1:2 , "%");
+	escreval("Testes negativos: " , porcentCN3:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adolescentes"); // Apresentação dos dados dos Adolescentes da RA 3
+	escreval("Total de testes realizados: " , contAdol3);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdolF3);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdolM3);
+	escreval("Testes positivos: " , porcentAdolP3:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdolN3:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adultos"); // Apresentação dos dados dos Adultos da RA 3
+	escreval("Total de testes realizados: " , contAdul3);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdulF3);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdulM3);
+	escreval("Testes positivos: " , porcentAdulP3:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdulN3:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Idosos"); // Apresentação dos dados dos Idosos da RA 3
+	escreval("Total de testes realizados: " , contId3);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contIdF3);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contIdM3);
+	escreval("Testes positivos: " , porcentIdP3:1:2 , "%");
+	escreval("Testes negativos: " , porcentIdN3:1:2 , "%");
+
+	escreval(" ");
+	escreval("Região Administrativa: " , RA4 , " (Parte 1 do relatório)"); // Apresentando a RA 4
+	escreval (" ");
+	escreval("Faixa Etária: Crianças"); // Apresentação dos dados das Crianças na RA 4
+	escreval("Total de testes realizados: " , contC4);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contCF4);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contCM4);
+	escreval("Testes positivos: " , porcentCP4:1:2 , "%");
+	escreval("Testes negativos: " , porcentCN4:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adolescentes"); // Apresentação dos dados dos Adolescentes na RA 4
+	escreval("Total de testes realizados: " , contAdol4);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdolF4);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdolM4);
+	escreval("Testes positivos: " , porcentAdolP4:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdolN4:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adultos"); // Apresentação dos dados dos Adultos na RA 4
+	escreval("Total de testes realizados: " , contAdul4);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdulF4);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdulM4);
+	escreval("Testes positivos: " , porcentAdulP4:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdulN4:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Idosos"); // Apresentação dos dados dos Idosos na RA 4
+	escreval("Total de testes realizados: " , contId4);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contIdF4);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contIdM4);
+	escreval("Testes positivos: " , porcentIdP4:1:2 , "%");
+	escreval("Testes negativos: " , porcentIdN4:1:2 , "%");
+
+	escreval(" ");
+	escreval("Região Administrativa: " , RA5 , " (Parte 1 do relatório)"); // Apresentando a RA 5
+	escreval (" ");
+	escreval("Faixa Etária: Crianças"); // Apresentação dos dados das Crianças na RA 5
+	escreval("Total de testes realizados: " , contC5);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contCF5);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contCM5);
+	escreval("Testes positivos: " , porcentCP5:1:2 , "%");
+	escreval("Testes negativos: " , porcentCN5:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adolescentes"); // Apresentação dos dados dos Adolescentes na RA 5
+	escreval("Total de testes realizados: " , contAdol5);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdolF5);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdolM5);
+	escreval("Testes positivos: " , porcentAdolP5:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdolN5:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Adultos"); // Apresentação dos dados dos Adultos na RA 5
+	escreval("Total de testes realizados: " , contAdul5);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contAdulF5);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contAdulM5);
+	escreval("Testes positivos: " , porcentAdulP5:1:2 , "%");
+	escreval("Testes negativos: " , porcentAdulN5:1:2 , "%");
+
+	escreval (" ");
+	escreval("Faixa Etária: Idosos"); // Apresentação dos dados dos Idosos na RA 5
+	escreval("Total de testes realizados: " , contId5);
+	escreval("Quantidade de pessoas do sexo Feminino: " , contIdF5);
+	escreval("Quantidade de pessoas do sexo Masculino: " , contIdM5);
+	escreval("Testes positivos: " , porcentIdP5:1:2 , "%");
+	escreval("Testes negativos: " , porcentIdN5:1:2 , "%");
+
+	escreval(" ");
+	escreval("Resultados Globais: (Parte 2 do relatório)"); // Apresentando Resultados Globais das cinco RA juntas
+	escreval("Média das idades da população que realizou os testes: " , mediaIdadesTotal);
+	se ((porcentCPTotal > porcentAdolPTotal) e (porcentCPTotal > porcentAdulPTotal) e (porcentCPTotal > porcentIdPTotal)) entao
+		escreval("Faixa etária que teve maior percentual de infectados foi: Crianças"); // Tentando identificar a faixa etária com maior percentual de infectados na RA 5
+	fimSe
+	se ((porcentAdolPTotal > porcentCPTotal) e (porcentAdolPTotal > porcentAdulPTotal) e (porcentAdolPTotal > porcentIdPTotal)) entao
+		escreval("Faixa etária que teve maior percentual de infectados foi: Adolescentes");
+	fimSe
+	se ((porcentAdulPTotal > porcentCPTotal) e (porcentAdulPTotal > porcentAdolPTotal) e (porcentAdulPTotal > porcentIdPTotal)) entao
+		escreval("Faixa etária que teve maior percentual de infectados foi: Adultos");
+	fimSe
+	se ((porcentIdPTotal > porcentCPTotal) e (porcentIdPTotal > porcentAdolPTotal) e (porcentIdPTotal > porcentAdulPTotal)) entao
+		escreval("Faixa etária que teve maior percentual de infectados foi: Idosos");
+	fimSe
+
+	se ((porcentCPTotal < porcentAdolPTotal) e (porcentCPTotal < porcentAdulPTotal) e (porcentCPTotal < porcentIdPTotal)) entao
+		escreval("Faixa etária que teve menor percentual de infectados foi: Crianças"); // Tentando identificar a faixa etária com menor percentual de infectados na RA 5
+	fimSe
+	se ((porcentAdolPTotal < porcentCPTotal) e (porcentAdolPTotal < porcentAdulPTotal) e (porcentAdolPTotal < porcentIdPTotal)) entao
+		escreval("Faixa etária que teve menor percentual de infectados foi: Adolescentes");
+	fimSe
+	se ((porcentAdulPTotal < porcentCPTotal) e (porcentAdulPTotal < porcentAdolPTotal) e (porcentAdulPTotal < porcentIdPTotal)) entao
+		escreval("Faixa etária que teve menor percentual de infectados foi: Adultos");
+	fimSe
+	se ((porcentIdPTotal < porcentCPTotal) e (porcentIdPTotal < porcentAdolPTotal) e (porcentIdPTotal < porcentAdulPTotal)) entao
+		escreval("Faixa etária que teve menor percentual de infectados foi: Idosos");
+	fimSe
+
+	escreval("Quantidade global de pessoas infectadas foi: " , contPTotal);
+	escreval("Quantidade global de pessoas não infectadas foi: " , contNTotal);
+	escreval("Quantidade de pessoas do sexo masculino da faixa 'Adultos' infectadas: " , contAdulPMTotal);
+	escreval("Quantidade de pessoas do sexo feminino da faixa 'Idosos' infectadas: " , contIdPFTotal);
+	escreval("Quantidade de pessoas do sexo feminino da faixa 'Adultos' infectadas: " , contAdulPFTotal);
+	escreval("Percentual de 'Crianças' não infectadas: " , porcentCNTotal:1:2 , "%");
+	escreval("Percentual de 'Idosos' infectados: " , porcentIdPTotal:1:2 , "%");
+
+fimPrincipal
